@@ -35,12 +35,13 @@ function leftAlgorithmForCurrentRow($r, $db)
                 `int3` = :int3,
                 vard = :vard,
                 vark = :vark,
-                ins_date = :ins_date
+                ins_date = :ins_date,
+                varhCount = :varhCount
             WHERE `varh` = :varh';
         $result = $db->prepare($sql);
         $result->execute(array(':varh' => $r['varh'], ':varf' => $r['varf'], ':varl' => $r['varl'], ':dateb' => $r['Dateb'], ':int1' => $r['int1'],
             ':dates' => $r['dates'], ':datea' => $r['datea'], ':datev' => $r['datev'], ':datek' => $r['datek'], ':dateg' => $r['Dateg'],
-            ':int2' => $r['int2'], ':int3' => $r['int3'], ':vard' => $r['vard'], ':vark' => $r['vark'], ':ins_date' => $r['dates']));
+            ':int2' => $r['int2'], ':int3' => $r['int3'], ':vard' => $r['vard'], ':vark' => $r['vark'], ':ins_date' => $r['dates'], ':varhCount' => ++$id['varhCount']));
 
 
     } else {
@@ -51,7 +52,6 @@ function leftAlgorithmForCurrentRow($r, $db)
 
         $result = $db->prepare($sql);
 
-//        $result->execute();
         $result->execute(array(':varh' => $r['varh'], ':varf' => $r['varf'], ':varl' => $r['varl'], ':dateb' => $r['Dateb'], ':int1' => $r['int1'],
             ':dates' => $r['dates'], ':datea' => $r['datea'], ':datev' => $r['datev'], ':datek' => $r['datek'], ':dateg' => $r['Dateg'],
             ':int2' => $r['int2'], ':int3' => $r['int3'], ':vard' => $r['vard'], ':vark' => $r['vark'],':ins_date' => $r['dates']));
