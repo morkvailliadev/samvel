@@ -21,7 +21,6 @@ $mainResult = $db->query("SELECT Pk_ordered_act_kpp, varh, varf, varl, Dateb, da
                                       FROM ordered_act_kpp");
 
 //For first algorithm
-$varhCount = 1;
 
 while ($r = $mainResult->fetch()) {
 
