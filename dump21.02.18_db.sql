@@ -137,6 +137,7 @@ DROP TABLE IF EXISTS `varvar1`;
 CREATE TABLE `varvar1` (
   `pk_varvar1` int(10) NOT NULL AUTO_INCREMENT,
   `varh` varchar(40) DEFAULT NULL,
+  `varf` varchar(50) DEFAULT NULL,
   `varl` varchar(50) DEFAULT NULL,
   `dateb` date DEFAULT NULL,
   `int1` tinyint(1) DEFAULT NULL,
