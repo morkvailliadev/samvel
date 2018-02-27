@@ -16,11 +16,12 @@ $db = Db::getConnection();
 $k = 100;  // количесво фейковых строк
 
 for ($i = 0; $i<$k; $i++) {
-
+    $int3 = rand(0, 99);
     $f = rand(0, 2);
-    $str[] = "('varh{$i}', {$f} , 'vard{$i}')";
+    $str[] = "('varh{$i}', {$f} , 'vard{$i}', {$int3})";
 }
 
 $str = implode(',', $str);
+echo $str;
 
-$mainResult = $db->query('INSERT INTO ordered_act_kpp  (varh, `int1`, vard) VALUES ' . $str .  ';');
+$mainResult = $db->query('INSERT INTO ordered_act_kpp  (varh, `int1`, vard, `int3`) VALUES ' . $str .  ';');
