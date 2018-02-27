@@ -31,7 +31,7 @@ function leftAlgorithmForCurrentRow($r, $db)
                 datev = :datev,
                 datek = :datek,
                 dateg = :dateg,
-                `int2` = :int2,
+                'int2' = :int2,
             WHERE varh = :varh";
         $result = $db->prepare($sql);
         $result->execute(array(':varh' => $r['varh'], ':varf' => $r['varf'], ':varl' => $r['varl'], ':dateb' => $r['Dateb'], ':int1' => $r['int1'],
@@ -41,16 +41,16 @@ function leftAlgorithmForCurrentRow($r, $db)
 
     } else {
         $sql = 'INSERT INTO varvar1 '
-            . "(varh, varf, varl, dateb, `int1`, dates, datea, datev, datek, dateg, `int2`, ins_date)"
+            . "(varh, varf, varl, dateb, `int1`, dates, datea, datev, datek, dateg, `int2`, `int3`, vard, vark, ins_date)"
             . 'VALUES '
-            . '(:varh, :varf, :varl, :dateb, :int1, :dates, :datea, :datev, :datek, :dateg, :int2, :ins_date)';
+            . '(:varh, :varf, :varl, :dateb, :int1, :dates, :datea, :datev, :datek, :dateg, :int2, :int3, :vard, :vark, :ins_date)';
 
         $result = $db->prepare($sql);
 
 //        $result->execute();
         $result->execute(array(':varh' => $r['varh'], ':varf' => $r['varf'], ':varl' => $r['varl'], ':dateb' => $r['Dateb'], ':int1' => $r['int1'],
             ':dates' => $r['dates'], ':datea' => $r['datea'], ':datev' => $r['datev'], ':datek' => $r['datek'], ':dateg' => $r['Dateg'],
-            ':int2' => $r['int2'], ':ins_date' => $r['dates']));
+            ':int2' => $r['int2'], ':int3' => $r['int3'], ':vard' => $r['vard'], ':vark' => $r['vark'],':ins_date' => $r['dates']));
     }
 }
 
