@@ -141,9 +141,9 @@ function rightAlgorithmForCurrentRow($r, $db)
 
     if (true){  //isset($rows['int3']) && $rows['int3'] != $r['int3']
 
-        $sql = 'INSERT INTO varhvard (vard, `int2`, `int3`, ins_date) VALUES (:vard, :int2, :int3, :ins_date)';
+        $sql = 'INSERT INTO varhvard (vard, `int2`, `int3`) VALUES (:vard, :int2, :int3)';
         $result = $db->prepare($sql);
 
-        $result->execute([':vard' => $r['vard'], ':int2' => $r['int2'], ':int3' => $r['int3'], ':ins_date' => time()]);
+        $result->execute(array(':vard' => $r['vard'], ':int2' => $r['int2'], ':int3' => $r['int3']));
     };
 }
