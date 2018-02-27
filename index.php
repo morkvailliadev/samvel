@@ -35,6 +35,11 @@ while ($r = $mainResult->fetch()) {
 
 /* Functions Sections */
 
+function leftAlgorithmForCurrentRow($r, $db)
+{
+
+}
+
 function mainAlgorithmForCurrentRow($r, $db)
 {
 
