@@ -17,7 +17,7 @@ $db = Db::getConnection();
 
 /* Main logic */
 
-$mainResult = $db->query("SELECT Pk_ordered_act_kpp, varh, varf, varl, Dateb, dates, datea, datek, datev, 'int1', 'int2', vark, vard, 'int3' 
+$mainResult = $db->query("SELECT Pk_ordered_act_kpp, varh, varf, varl, Dateb, dates, datea, datek, datev, `int1`, `int2`, vark, vard, `int3` 
                                       FROM ordered_act_kpp");
 
 //For first algorithm

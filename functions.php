@@ -25,13 +25,13 @@ function leftAlgorithmForCurrentRow($r, $db)
                 varf = :varf, 
                 varl = :varl,
                 dateb = :dateb,
-                'int1' = :int1,
+                `int1` = :int1,
                 dates = :dates,
                 datea = :datea,
                 datev = :datev,
                 datek = :datek,
                 dateg = :dateg,
-                'int2' = :int2,
+                `int2` = :int2,
             WHERE varh = :varh";
         $result = $db->prepare($sql);
         $result->execute(array(':varh' => $r['varh'], ':varf' => $r['varf'], ':varl' => $r['varl'], ':dateb' => $r['Dateb'], ':int1' => $r['int1'],
@@ -41,7 +41,7 @@ function leftAlgorithmForCurrentRow($r, $db)
 
     } else {
         $sql = 'INSERT INTO varvar1 '
-            . "(varh, varf, varl, dateb, 'int1', dates, datea, datev, datek, dateg, 'int2', ins_date)"
+            . "(varh, varf, varl, dateb, `int1`, dates, datea, datev, datek, dateg, `int2`, ins_date)"
             . 'VALUES '
             . '(:varh, :varf, :varl, :dateb, :int1, :dates, :datea, :datev, :datek, :dateg, :int2, :ins_date)';
 
