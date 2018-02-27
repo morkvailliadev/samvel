@@ -26,7 +26,7 @@ $varhCount = 1;
 while ($r = $mainResult->fetch()) {
 
     //Call 1 method
-//    leftAlgorithmForCurrentRow($r, $db);
+    leftAlgorithmForCurrentRow($r, $db);
 
     //Call 2 method
     //mainAlgorithmForCurrentRow($r, $db);
