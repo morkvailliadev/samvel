@@ -107,4 +107,8 @@ function mainAlgorithmForCurrentRow($r, $db)
     }
 }
 
+function rightAlgorithmForCurrentRow($r, $db)
+{
+
+}
 /* End functions */
