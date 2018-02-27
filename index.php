@@ -29,6 +29,12 @@ while ($r = $mainResult->fetch()) {
 /* End logic*/
 
 
+
+
+
+
+/* Functions Sections */
+
 function mainAlgorithmForCurrentRow($r, $db)
 {
 
@@ -95,3 +101,5 @@ function mainAlgorithmForCurrentRow($r, $db)
         }
     }
 }
+
+/* End functions */
