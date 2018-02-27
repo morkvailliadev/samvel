@@ -45,9 +45,9 @@ function leftAlgorithmForCurrentRow($r, $db)
 
     } else {
         $sql = 'INSERT INTO varvar1 '
-            . "(varh, varf, varl, dateb, `int1`, dates, datea, datev, datek, dateg, `int2`, `int3`, vard, vark, ins_date)"
+            . "(varh, varf, varl, dateb, `int1`, dates, datea, datev, datek, dateg, `int2`, `int3`, vard, vark, ins_date, varhCount)"
             . 'VALUES '
-            . '(:varh, :varf, :varl, :dateb, :int1, :dates, :datea, :datev, :datek, :dateg, :int2, :int3, :vard, :vark, :ins_date)';
+            . '(:varh, :varf, :varl, :dateb, :int1, :dates, :datea, :datev, :datek, :dateg, :int2, :int3, :vard, :vark, :ins_date, 0)';
 
         $result = $db->prepare($sql);
 
