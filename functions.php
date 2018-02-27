@@ -42,7 +42,6 @@ function leftAlgorithmForCurrentRow($r, $db)
             ':dates' => $r['dates'], ':datea' => $r['datea'], ':datev' => $r['datev'], ':datek' => $r['datek'], ':dateg' => $r['Dateg'],
             ':int2' => $r['int2'], ':int3' => $r['int3'], ':vard' => $r['vard'], ':vark' => $r['vark'], ':varhCount' => ++$id['varhCount']));
 
-
         echo "Algorithm 1 - row updated";
 
 
@@ -60,7 +59,6 @@ function leftAlgorithmForCurrentRow($r, $db)
 
         echo "Algorithm 1 - row added";
     }
-
 }
 
 function mainAlgorithmForCurrentRow($r, $db)
