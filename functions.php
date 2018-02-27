@@ -139,11 +139,15 @@ function rightAlgorithmForCurrentRow($r, $db)
 
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    if (true){  //isset($rows['int3']) && $rows['int3'] != $r['int3']
+    if (isset($rows['int3']) && $rows['int3'] != $r['int3']) {
 
         $sql = 'INSERT INTO varhvard (vard, `int2`, `int3`) VALUES (:vard, :int2, :int3)';
         $result = $db->prepare($sql);
 
         $result->execute(array(':vard' => $r['vard'], ':int2' => $r['int2'], ':int3' => $r['int3']));
-    };
+
+        echo 'Algorithm 3 - row added <br>';
+    } else {
+        echo 'Algorithm 3 - the condition is not discharged <br>';
+    }
 }
