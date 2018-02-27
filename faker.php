@@ -4,6 +4,11 @@ error_reporting(E_ALL);
 
 define('ROOT', dirname(__FILE__));
 
+require 'vendor/autoload.php';
+
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();
+
 include_once ROOT . '/components/Db.php';
 
 $db = Db::getConnection();
