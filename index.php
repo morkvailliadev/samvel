@@ -19,12 +19,13 @@ $mainResult = $db->query('SELECT id, varh, varf, varl, Dateb, dates, datea, date
 while ($r = $mainResult->fetch()) {
 
     //Call 1 method
+    leftAlgorithmForCurrentRow($r, $db);
 
     //Call 2 method
     mainAlgorithmForCurrentRow($r, $db);
 
     //Call 3 method
-
+    rightAlgorithmForCurrentRow($r, $db);
 }
 
 /* End logic*/
