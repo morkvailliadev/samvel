@@ -65,7 +65,7 @@ function mainAlgorithmForCurrentRow($r, $db)
 
         $sql = 'INSERT INTO date1date2 '
             . '(varh, varf, varl, dateb, int1_in, dates_in, datea_in, datev_in, datek_in, dateg_in, int2_in, int3_in, vard_in, vark_in, int1_out, dates_out, 
-            datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka, ins_date'
+            datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka, ins_date)'
             . 'VALUES '
             . '(:varh, :varf, :varl, :dateb, :int1_in, :dates_in, :datea_in, :datev_in, :datek_in, :dateg_in, :int2_in, :int3_in, :vard_in, :vark_in, :int1_out, :dates_out,
                 :datea_out, :datev_out, :datek_out, :dateg_out, :int2_out, :int3_out, :vard_out, :vark_out, "1", :ins_date)';
@@ -94,7 +94,7 @@ function mainAlgorithmForCurrentRow($r, $db)
 
             $sql = 'INSERT INTO date1date2 '
                 . '(varh, varf, varl, dateb, int1_in, dates_in, datea_in, datev_in, datek_in, dateg_in, int2_in, int3_in, vard_in, vark_in, int1_out, dates_out, 
-            datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka, ins_date'
+            datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka, ins_date)'
                 . 'VALUES '
                 . '(:varh, :varf, :varl, :dateb, :int1_in, :dates_in, :datea_in, :datev_in, :datek_in, :dateg_in, :int2_in, :int3_in, :vard_in, :vark_in, :int1_out, :dates_out,
                 :datea_out, :datev_out, :datek_out, :dateg_out, :int2_out, :int3_out, :vard_out, :vark_out, "1", :ins_date)';
@@ -109,7 +109,7 @@ function mainAlgorithmForCurrentRow($r, $db)
         } else {
             $sql = 'INSERT INTO date1date2 '
                 . '(varh, varf, varl, dateb, int1_in, dates_in, datea_in, datev_in, datek_in, dateg_in, int2_in, int3_in, vard_in, vark_in, int1_out, dates_out, 
-            datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka, ins_date'
+            datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka, ins_date)'
                 . 'VALUES '
                 . '(:varh, :varf, :varl, :dateb, :int1_in, :dates_in, :datea_in, :datev_in, :datek_in, :dateg_in, :int2_in, :int3_in, :vard_in, :vark_in, :int1_out, :dates_out,
                 :datea_out, :datev_out, :datek_out, :dateg_out, :int2_out, :int3_out, :vard_out, :vark_out, "0", :ins_date)';
@@ -125,8 +125,22 @@ function mainAlgorithmForCurrentRow($r, $db)
     }
 }
 
+
 function rightAlgorithmForCurrentRow($r, $db)
 {
+    $stmt = $db->prepare('SELECT * FROM varhvard WHERE varh = :varh and vard = :vard');
+    $stmt->bindParam(':varh', $r['varh'], PDO::PARAM_STR);
+    $stmt->bindParam(':vard', $r['vard'], PDO::PARAM_STR);
 
+    $stmt->execute();
+
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if (true){  //isset($rows['int3']) && $rows['int3'] != $r['int3']
+
+        $sql = 'INSERT INTO varhvard (vard, `int2`, `int3`, ins_date) VALUES (:vard, :int2, :int3, :ins_date)';
+        $result = $db->prepare($sql);
+
+        $result->execute([':vard' => $r['vard'], ':int2' => $r['int2'], ':int3' => $r['int3'], ':ins_date' => time()]);
+    };
 }
-/* End functions */
