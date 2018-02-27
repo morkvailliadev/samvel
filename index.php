@@ -50,6 +50,7 @@ while ($rowMain = $mainResult->fetch()) {
 
         $id = $result->fetch();
 
+        // В таблице date1date2 есть строка в которой varh=p_varh и int1_out is null
         if ($id) {
 
             $firstSql = 'INSERT INTO date1date2 '
@@ -60,6 +61,21 @@ while ($rowMain = $mainResult->fetch()) {
                 :datea_out, :datev_out, :datek_out, :dateg_out, :int2_out, :int3_out, :vard_out, :vark_out, "1", :ins_date)';
 
               $result = $db->prepare($sql);
+
+            $result->execute(array(':varh' => $rowMain['varh'], ':varf' => $rowMain['varf'], ':varl' => $rowMain['varl'], ':dateb' => $rowMain['Dateb'], ':int1_in' => $rowMain['int1'],
+                ':dates_in' => $rowMain['dates'], ':datea_in' => $rowMain['datea'],':datev_in' => $rowMain['datev'],':datek_in' => $rowMain['datek'],':dateg_in' => $rowMain['Dateg'],
+                ':int2_in' => $rowMain['int2'],':int3_in' => $rowMain['int3'],':vard_in' => $rowMain['vard'],':vark_in' => $rowMain['vark'],':int1_out' => $rowMain['int1'],
+                ':dates_out' => $rowMain['dates'],':datea_out' => $rowMain['datea'],':datev_out' => $rowMain['datev'],':datek_out' => $rowMain['datek'],':dateg_out' => $rowMain['Dateg'],
+                ':int2_out' => $rowMain['int2'],':int3_out' => $rowMain['int3'],':vard_out' => $rowMain['vard'],':vark_out' => $rowMain['vark'],':ins_date' => $rowMain['dates']));
+        } else {
+            $secondSql = 'INSERT INTO date1date2 '
+                . '(varh, varf, varl, dateb, int1_in, dates_in, datea_in, datev_in, datek_in, dateg_in, int2_in, int3_in, vard_in, vark_in, int1_out, dates_out, 
+            datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka, ins_date'
+                . 'VALUES '
+                . '(:varh, :varf, :varl, :dateb, :int1_in, :dates_in, :datea_in, :datev_in, :datek_in, :dateg_in, :int2_in, :int3_in, :vard_in, :vark_in, :int1_out, :dates_out,
+                :datea_out, :datev_out, :datek_out, :dateg_out, :int2_out, :int3_out, :vard_out, :vark_out, "0  ", :ins_date)';
+
+            $result = $db->prepare($sql);
 
             $result->execute(array(':varh' => $rowMain['varh'], ':varf' => $rowMain['varf'], ':varl' => $rowMain['varl'], ':dateb' => $rowMain['Dateb'], ':int1_in' => $rowMain['int1'],
                 ':dates_in' => $rowMain['dates'], ':datea_in' => $rowMain['datea'],':datev_in' => $rowMain['datev'],':datek_in' => $rowMain['datek'],':dateg_in' => $rowMain['Dateg'],
