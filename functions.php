@@ -41,15 +41,16 @@ function leftAlgorithmForCurrentRow($r, $db)
 
     } else {
         $sql = 'INSERT INTO varvar1 '
-            . '(varh, varf, varl, dateb, int1, dates, datea, datev, datek, dateg, int2, ins_date'
+            . "(varh, varf, varl, dateb, 'int1', dates, datea, datev, datek, dateg, 'int2', ins_date"
             . 'VALUES '
             . '(:varh, :varf, :varl, :dateb, :int1, :dates, :datea, :datev, :datek, :dateg, :int2, :ins_date)';
 
         $result = $db->prepare($sql);
 
-        $result->execute(array(':varh' => $r['varh'], ':varf' => $r['varf'], ':varl' => $r['varl'], ':dateb' => $r['Dateb'], ':int1' => $r['int1'],
-            ':dates' => $r['dates'], ':datea' => $r['datea'], ':datev' => $r['datev'], ':datek' => $r['datek'], ':dateg' => $r['Dateg'],
-            ':int2' => $r['int2'], ':ins_date' => $r['dates']));
+        $result->execute();
+//        $result->execute(array(':varh' => $r['varh'], ':varf' => $r['varf'], ':varl' => $r['varl'], ':dateb' => $r['Dateb'], ':int1' => $r['int1'],
+//            ':dates' => $r['dates'], ':datea' => $r['datea'], ':datev' => $r['datev'], ':datek' => $r['datek'], ':dateg' => $r['Dateg'],
+//            ':int2' => $r['int2'], ':ins_date' => $r['dates']));
     }
 }
 

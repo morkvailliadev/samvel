@@ -17,8 +17,8 @@ $db = Db::getConnection();
 
 /* Main logic */
 
-$mainResult = $db->query('SELECT Pk_ordered_act_kpp, varh, varf, varl, Dateb, dates, datea, datek, datev, int1, int2, vark, vard, int3 
-                                      FROM ordered_act_kpp');
+$mainResult = $db->query("SELECT Pk_ordered_act_kpp, varh, varf, varl, Dateb, dates, datea, datek, datev, 'int1', 'int2', vark, vard, 'int3' 
+                                      FROM ordered_act_kpp");
 
 //For first algorithm
 $varhCount = 1;
@@ -29,10 +29,10 @@ while ($r = $mainResult->fetch()) {
     leftAlgorithmForCurrentRow($r, $db);
 
     //Call 2 method
-    mainAlgorithmForCurrentRow($r, $db);
+    //mainAlgorithmForCurrentRow($r, $db);
 
     //Call 3 method
-    rightAlgorithmForCurrentRow($r, $db);
+    //rightAlgorithmForCurrentRow($r, $db);
 }
 
 /* End logic*/
