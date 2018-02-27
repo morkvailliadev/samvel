@@ -94,11 +94,6 @@ CREATE TABLE `ordered_act_kpp` (
 -- Dumping data for table `ordered_act_kpp`
 --
 
-LOCK TABLES `ordered_act_kpp` WRITE;
-/*!40000 ALTER TABLE `ordered_act_kpp` DISABLE KEYS */;
-INSERT INTO `ordered_act_kpp` VALUES (1,'12','21312','21313','2018-02-28',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `ordered_act_kpp` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `varhvard`
