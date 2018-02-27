@@ -3,6 +3,6 @@
 return array(
     'host' => 'localhost',
     'dbname' => 'samvel',
-    'user' => '',
+    'user' => 'root',
     'password' => '',
 );
