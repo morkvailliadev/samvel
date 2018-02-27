@@ -15,6 +15,8 @@ $db = Db::getConnection();
 $mainResult = $db->query('SELECT id, varh, varf, varl, Dateb, dates, datea, datek, datev, Dateg, int1, int2, vark, vard, int3 
                                       FROM odered_act_kpp ORDER BY id DESC');
 
+//For first algorithm
+$varhCount = 1;
 
 while ($r = $mainResult->fetch()) {
 
