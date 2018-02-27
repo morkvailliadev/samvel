@@ -35,13 +35,12 @@ function leftAlgorithmForCurrentRow($r, $db)
                 `int3` = :int3,
                 vard = :vard,
                 vark = :vark,
-                ins_date = :ins_date,
                 varhCount = :varhCount
             WHERE `varh` = :varh';
         $result = $db->prepare($sql);
         $result->execute(array(':varh' => $r['varh'], ':varf' => $r['varf'], ':varl' => $r['varl'], ':dateb' => $r['Dateb'], ':int1' => $r['int1'],
             ':dates' => $r['dates'], ':datea' => $r['datea'], ':datev' => $r['datev'], ':datek' => $r['datek'], ':dateg' => $r['Dateg'],
-            ':int2' => $r['int2'], ':int3' => $r['int3'], ':vard' => $r['vard'], ':vark' => $r['vark'], ':ins_date' => $r['dates'], ':varhCount' => ++$id['varhCount']));
+            ':int2' => $r['int2'], ':int3' => $r['int3'], ':vard' => $r['vard'], ':vark' => $r['vark'], ':varhCount' => ++$id['varhCount']));
 
 
         echo "Algorithm 1 - row updated";
@@ -49,15 +48,15 @@ function leftAlgorithmForCurrentRow($r, $db)
 
     } else {
         $sql = 'INSERT INTO varvar1 '
-            . "(varh, varf, varl, dateb, `int1`, dates, datea, datev, datek, dateg, `int2`, `int3`, vard, vark, ins_date, varhCount)"
+            . "(varh, varf, varl, dateb, `int1`, dates, datea, datev, datek, dateg, `int2`, `int3`, vard, vark, varhCount)"
             . 'VALUES '
-            . '(:varh, :varf, :varl, :dateb, :int1, :dates, :datea, :datev, :datek, :dateg, :int2, :int3, :vard, :vark, :ins_date, 0)';
+            . '(:varh, :varf, :varl, :dateb, :int1, :dates, :datea, :datev, :datek, :dateg, :int2, :int3, :vard, :vark, 0)';
 
         $result = $db->prepare($sql);
 
         $result->execute(array(':varh' => $r['varh'], ':varf' => $r['varf'], ':varl' => $r['varl'], ':dateb' => $r['Dateb'], ':int1' => $r['int1'],
             ':dates' => $r['dates'], ':datea' => $r['datea'], ':datev' => $r['datev'], ':datek' => $r['datek'], ':dateg' => $r['Dateg'],
-            ':int2' => $r['int2'], ':int3' => $r['int3'], ':vard' => $r['vard'], ':vark' => $r['vark'],':ins_date' => $r['dates']));
+            ':int2' => $r['int2'], ':int3' => $r['int3'], ':vard' => $r['vard'], ':vark' => $r['vark']));
 
         echo "Algorithm 1 - row added";
     }
