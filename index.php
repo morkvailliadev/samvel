@@ -17,7 +17,7 @@ $mainResult = $db->query('SELECT * FROM ' . ORDERED_ACT_KPP . ' LIMIT 50');
 
 //For first algorithm
 
-while ($r = $mainResult->fetch()) {
+while ($r = $mainResult->fetchAll(PDO::FETCH_ASSOC)) {
 
     //Call 1 method
     leftAlgorithmForCurrentRow($r, $db);
