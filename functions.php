@@ -4,19 +4,17 @@
 function leftAlgorithmForCurrentRow($r, $db)
 {
     // If check p_varh in varvar1
+    $stmt = $db->prepare('SELECT * FROM varvar1 WHERE varh = :varh');
 
-    $sql = 'SELECT * FROM varvar1 WHERE varh = :varh';
+    $stmt->bindParam(':varh', $r['varh'], PDO::PARAM_STR);
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
 
-    $result = $db->prepare($sql);
-
-    $result->bindParam(':varh', $r['varh'], PDO::PARAM_STR);
-    $result->setFetchMode(PDO::FETCH_ASSOC);
-    $result->execute();
-
-    $id = $result->fetch();
+    $rows = $stmt->fetch();
+    unset($stmt);
 
     // If check
-    if ($id) {
+    if ($rows) {
 
         //Update data
         $sql = 'UPDATE `varvar1`
@@ -37,23 +35,22 @@ function leftAlgorithmForCurrentRow($r, $db)
                 vark = :vark,
                 varhCount = :varhCount
             WHERE `varh` = :varh';
-        $result = $db->prepare($sql);
-        $result->execute(array(':varh' => $r['varh'], ':varf' => $r['varf'], ':varl' => $r['varl'], ':dateb' => $r['dateb'], ':int1' => $r['int1'],
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array(':varh' => $r['varh'], ':varf' => $r['varf'], ':varl' => $r['varl'], ':dateb' => $r['dateb'], ':int1' => $r['int1'],
             ':dates' => $r['dates'], ':datea' => $r['datea'], ':datev' => $r['datev'], ':datek' => $r['datek'], ':dateg' => $r['dateg'],
-            ':int2' => $r['int2'], ':int3' => $r['int3'], ':vard' => $r['vard'], ':vark' => $r['vark'], ':varhCount' => ++$id['varhCount']));
+            ':int2' => $r['int2'], ':int3' => $r['int3'], ':vard' => $r['vard'], ':vark' => $r['vark'], ':varhCount' => ++$rows['varhCount']));
 
         echo "Algorithm 1 - row updated <br>";
 
 
     } else {
-        $sql = 'INSERT INTO varvar1 '
-            . "(varh, varf, varl, dateb, `int1`, dates, datea, datev, datek, dateg, `int2`, `int3`, vard, vark, varhCount)"
-            . 'VALUES '
-            . '(:varh, :varf, :varl, :dateb, :int1, :dates, :datea, :datev, :datek, :dateg, :int2, :int3, :vard, :vark, 0)';
+        $sql = 'INSERT INTO varvar1 (varh, varf, varl, dateb, `int1`, dates, datea, datev, datek, dateg, `int2`, `int3`, vard, vark, varhCount)
+                VALUES (:varh, :varf, :varl, :dateb, :int1, :dates, :datea, :datev, :datek, :dateg, :int2, :int3, :vard, :vark, 0)';
 
-        $result = $db->prepare($sql);
+        $stmt = $db->prepare($sql);
 
-        $result->execute(array(':varh' => $r['varh'], ':varf' => $r['varf'], ':varl' => $r['varl'], ':dateb' => $r['dateb'], ':int1' => $r['int1'],
+        $stmt->execute(array(':varh' => $r['varh'], ':varf' => $r['varf'], ':varl' => $r['varl'], ':dateb' => $r['dateb'], ':int1' => $r['int1'],
             ':dates' => $r['dates'], ':datea' => $r['datea'], ':datev' => $r['datev'], ':datek' => $r['datek'], ':dateg' => $r['dateg'],
             ':int2' => $r['int2'], ':int3' => $r['int3'], ':vard' => $r['vard'], ':vark' => $r['vark']));
 
