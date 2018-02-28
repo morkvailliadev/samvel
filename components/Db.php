@@ -13,9 +13,6 @@ class Db
      */
     public static function getConnection()
     {
-        // Get the connection parameters from a file
-
-        // Set the connection
         $dsn = "mysql:host=" . DB_HOST .";dbname=" . DB_NAME ;
         $db = new PDO($dsn, DB_USER, DB_PASSWORD);
 

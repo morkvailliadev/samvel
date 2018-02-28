@@ -4,7 +4,7 @@
 function leftAlgorithmForCurrentRow($r, $db)
 {
     // If check p_varh in varvar1
-    $stmt = $db->prepare('SELECT * FROM varvar1 WHERE varh = :varh');
+    $stmt = $db->prepare('SELECT * FROM ' . VARVAR1 . ' WHERE varh = :varh');
 
     $stmt->bindParam(':varh', $r['varh'], PDO::PARAM_STR);
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -17,7 +17,7 @@ function leftAlgorithmForCurrentRow($r, $db)
     if ($rows) {
 
         //Update data
-        $sql = 'UPDATE `varvar1`
+        $sql = 'UPDATE ' . VARVAR1 .' 
             SET 
                 varh = :varh, 
                 varf = :varf, 
@@ -45,7 +45,7 @@ function leftAlgorithmForCurrentRow($r, $db)
 
 
     } else {
-        $sql = 'INSERT INTO varvar1 (varh, varf, varl, dateb, `int1`, dates, datea, datev, datek, dateg, `int2`, `int3`, vard, vark, varhCount)
+        $sql = 'INSERT INTO ' . VARVAR1 . ' (varh, varf, varl, dateb, `int1`, dates, datea, datev, datek, dateg, `int2`, `int3`, vard, vark, varhCount)
                 VALUES (:varh, :varf, :varl, :dateb, :int1, :dates, :datea, :datev, :datek, :dateg, :int2, :int3, :vard, :vark, 0)';
 
         $stmt = $db->prepare($sql);
@@ -63,7 +63,7 @@ function mainAlgorithmForCurrentRow($r, $db)
     if ($r['int1'] == 2) {
 
         // insert data in date1date2 column oshibka = 1 (DONE)
-        $sql = 'INSERT INTO date1date2 
+        $sql = 'INSERT INTO ' . DATE1DATE2 . ' 
             (varh, varf, varl, dateb, int1_in, dates_in, datea_in, datev_in, datek_in, dateg_in, int2_in, int3_in, vard_in, vark_in, int1_out, dates_out, 
             datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka)
             VALUES
@@ -82,7 +82,7 @@ function mainAlgorithmForCurrentRow($r, $db)
 
         //Check this block (DONE)
 
-        $sql = 'SELECT * FROM date1date2 WHERE varh = :varh AND int1_out IS NULL';
+        $sql = 'SELECT * FROM ' . DATE1DATE2 . ' WHERE varh = :varh AND int1_out IS NULL';
 
         $stmt = $db->prepare($sql);
 
@@ -96,7 +96,7 @@ function mainAlgorithmForCurrentRow($r, $db)
         // В таблице date1date2 есть строка в которой varh=p_varh и int1_out is null -> oshibka = 1 (DONE)
         if ($rows) {
 
-            $sql = 'INSERT INTO date1date2 
+            $sql = 'INSERT INTO ' . DATE1DATE2 . ' 
             (varh, varf, varl, dateb, int1_in, dates_in, datea_in, datev_in, datek_in, dateg_in, int2_in, int3_in, vard_in, vark_in, int1_out, dates_out, 
             datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka)
             VALUES
@@ -113,7 +113,7 @@ function mainAlgorithmForCurrentRow($r, $db)
         } else {
 
             //иначе просто копируем в data1date2 (in пишу, out - null) (DONE)
-            $sql = 'INSERT INTO date1date2 
+            $sql = 'INSERT INTO ' . DATE1DATE2 . ' 
             (varh, varf, varl, dateb, int1_in, dates_in, datea_in, datev_in, datek_in, dateg_in, int2_in, int3_in, vard_in, vark_in, int1_out, dates_out, 
             datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka)
             VALUES
@@ -131,7 +131,7 @@ function mainAlgorithmForCurrentRow($r, $db)
     } else {  // int1 == 0
 
         //Check this block
-        $sql = 'SELECT * FROM date1date2 WHERE varh = :varh';
+        $sql = 'SELECT * FROM ' . DATE1DATE2 . ' WHERE varh = :varh';
 
         $stmt = $db->prepare($sql);
 
@@ -147,7 +147,7 @@ function mainAlgorithmForCurrentRow($r, $db)
             if ($rows['int1_in'] != NULL) {
 
                 //update строку с varh в таблице date1date2 и  ordere_act_kpp
-                $sql = 'UPDATE `date1date2`
+                $sql = 'UPDATE `' . DATE1DATE2 . '`
             SET 
                 varh = :varh, 
                 varf = :varf, 
@@ -186,7 +186,7 @@ function mainAlgorithmForCurrentRow($r, $db)
             } else {
 
                 // insert date1date2, oshibka = 1 out
-                $sql = 'INSERT INTO date1date2 
+                $sql = 'INSERT INTO ' . DATE1DATE2 . ' 
             (varh, varf, varl, dateb, int1_in, dates_in, datea_in, datev_in, datek_in, dateg_in, int2_in, int3_in, vard_in, vark_in, int1_out, dates_out, 
             datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka)
             VALUES
@@ -204,7 +204,7 @@ function mainAlgorithmForCurrentRow($r, $db)
 
         } else {
             // insert date1date2, oshibka = 0 (DONE)
-            $sql = 'INSERT INTO date1date2 
+            $sql = 'INSERT INTO ' . DATE1DATE2 . ' 
             (varh, varf, varl, dateb, int1_in, dates_in, datea_in, datev_in, datek_in, dateg_in, int2_in, int3_in, vard_in, vark_in, int1_out, dates_out, 
             datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka)
             VALUES
@@ -225,7 +225,7 @@ function mainAlgorithmForCurrentRow($r, $db)
 
 function rightAlgorithmForCurrentRow($r, $db)
 {
-    $stmt = $db->prepare('SELECT * FROM varhvard WHERE varh = :varh and vard = :vard');
+    $stmt = $db->prepare('SELECT * FROM ' . VARHVARD . ' WHERE varh = :varh and vard = :vard');
     $stmt->bindParam(':varh', $r['varh'], PDO::PARAM_STR);
     $stmt->bindParam(':vard', $r['vard'], PDO::PARAM_STR);
 
@@ -236,7 +236,7 @@ function rightAlgorithmForCurrentRow($r, $db)
 
     if (isset($rows['int3']) && $rows['int3'] != $r['int3']) {
 
-        $stmt = $db->prepare('INSERT INTO varhvard (vard, `int2`, `int3`) VALUES (:vard, :int2, :int3)');
+        $stmt = $db->prepare('INSERT INTO ' . VARHVARD . ' (vard, `int2`, `int3`) VALUES (:vard, :int2, :int3)');
 
         $stmt->execute(array(':vard' => $r['vard'], ':int2' => $r['int2'], ':int3' => $r['int3']));
 
