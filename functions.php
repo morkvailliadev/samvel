@@ -255,7 +255,7 @@ function _log($var, $string = null){
         }
         $result .= $string ."\n";
 
-        $log_file_name = $_SERVER['DOCUMENT_ROOT'] . "/log.txt";
+        $log_file_name = $_SERVER['DOCUMENT_ROOT'] . "/log/log.txt";
         $now = date("Y-m-d H:i:s");
         file_put_contents($log_file_name, $now . " " . $result . "\r\n", FILE_APPEND);
         @error_log($now . $result, 3, $log_file_name);
