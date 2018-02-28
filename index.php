@@ -27,6 +27,9 @@ while ($r = $mainResult->fetch()) {
 
     //Call 3 method
     rightAlgorithmForCurrentRow($r, $db);
+
 }
+
+echo "script was executed successfully";
 
 /* End logic*/
