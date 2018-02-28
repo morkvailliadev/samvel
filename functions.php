@@ -240,8 +240,26 @@ function rightAlgorithmForCurrentRow($r, $db)
 
         $stmt->execute(array(':vard' => $r['vard'], ':int2' => $r['int2'], ':int3' => $r['int3']));
 
-        echo 'Algorithm 3 - row added <br>';
+        return true;
+
     } else {
-        echo 'Algorithm 3 - the condition is not discharged <br>';
+        return false;
     }
+}
+
+function _log($var, $string = null){
+    if ($var) {
+        $result = $var;
+        if (is_array($var) || is_object($var)) {
+            $result = print_r($var, 1);
+        }
+        $result .= $string ."\n";
+
+        $log_file_name = $_SERVER['DOCUMENT_ROOT'] . "/log.txt";
+        $now = date("Y-m-d H:i:s");
+        file_put_contents($log_file_name, $now . " " . $result . "\r\n", FILE_APPEND);
+        @error_log($now . $result, 3, $log_file_name);
+        return true;
+    }
+    return false;
 }
