@@ -17,7 +17,7 @@ $db = Db::getConnection();
 
 /* Main logic */
 
-$mainResult = $db->query("SELECT * FROM ordered_act_kpp LIMIT 100");
+$mainResult = $db->query("SELECT * FROM ordered_act_kpp LIMIT 10");
 
 //For first algorithm
 
