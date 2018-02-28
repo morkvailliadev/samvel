@@ -19,6 +19,8 @@ $mainResult = $db->query('SELECT * FROM ' . ORDERED_ACT_KPP . ' LIMIT 50');
 
 while ($r = $mainResult->fetch(PDO::FETCH_ASSOC)) {
 
+    _log($r['pk_table'], 'rows ===============');
+
     //Call 1 method
     leftAlgorithmForCurrentRow($r, $db);
 
