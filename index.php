@@ -24,10 +24,10 @@ $mainResult = $db->query("SELECT * FROM ordered_act_kpp LIMIT 10");
 while ($r = $mainResult->fetch()) {
 
     //Call 1 method
-    leftAlgorithmForCurrentRow($r, $db);
+    //leftAlgorithmForCurrentRow($r, $db);
 
     //Call 2 method
-    //mainAlgorithmForCurrentRow($r, $db);
+    mainAlgorithmForCurrentRow($r, $db);
 
     //Call 3 method
     //rightAlgorithmForCurrentRow($r, $db);
