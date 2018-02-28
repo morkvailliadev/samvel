@@ -62,7 +62,7 @@ function mainAlgorithmForCurrentRow($r, $db)
 {
     if ($r['int1'] == 2) {
 
-        // insert data in date1date2 column oshibka = 1 (DONE)
+        // insert data in date1date2 column oshibka = 1 + _in (DONE)
         $sql = 'INSERT INTO ' . DATE1DATE2 . ' 
             (varh, varf, varl, dateb, int1_in, dates_in, datea_in, datev_in, datek_in, dateg_in, int2_in, int3_in, vard_in, vark_in, int1_out, dates_out, 
             datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka)
@@ -93,7 +93,7 @@ function mainAlgorithmForCurrentRow($r, $db)
         $rows = $stmt->fetch();
         unset($stmt);
 
-        // В таблице date1date2 есть строка в которой varh=p_varh и int1_out is null -> oshibka = 1 (DONE)
+        // В таблице date1date2 есть строка в которой varh=p_varh и int1_out is null -> oshibka = 1 + in (DONE)
         if ($rows) {
 
             $sql = 'INSERT INTO ' . DATE1DATE2 . ' 
@@ -146,7 +146,7 @@ function mainAlgorithmForCurrentRow($r, $db)
             //Check this block (DONE)
             if ($rows['int1_in'] != NULL) {
 
-                //update строку с varh в таблице date1date2 и  ordere_act_kpp
+                //update строку с varh в таблице date1date2 из ordere_act_kpp + out
                 $sql = 'UPDATE `' . DATE1DATE2 . '`
             SET 
                 varh = :varh, 
@@ -185,7 +185,7 @@ function mainAlgorithmForCurrentRow($r, $db)
 
             } else {
 
-                // insert date1date2, oshibka = 1 out
+                // insert date1date2, oshibka = 1 + out
                 $sql = 'INSERT INTO ' . DATE1DATE2 . ' 
             (varh, varf, varl, dateb, int1_in, dates_in, datea_in, datev_in, datek_in, dateg_in, int2_in, int3_in, vard_in, vark_in, int1_out, dates_out, 
             datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka)
@@ -203,7 +203,7 @@ function mainAlgorithmForCurrentRow($r, $db)
             }
 
         } else {
-            // insert date1date2, oshibka = 0 (DONE)
+            // insert date1date2, oshibka = 0 + out (DONE)
             $sql = 'INSERT INTO ' . DATE1DATE2 . ' 
             (varh, varf, varl, dateb, int1_in, dates_in, datea_in, datev_in, datek_in, dateg_in, int2_in, int3_in, vard_in, vark_in, int1_out, dates_out, 
             datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka)
