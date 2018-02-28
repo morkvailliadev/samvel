@@ -1,16 +1,12 @@
 <?php
-ini_set('display_errors', 0);
-error_reporting(E_ALL);
+//ini_set('display_errors', 0);
+//error_reporting(E_ALL);
 
 define('ROOT', dirname(__FILE__));
 
-require 'vendor/autoload.php';
-
-$dotenv = new Dotenv\Dotenv(__DIR__);
-$dotenv->load();
-
-include_once ROOT . '/components/Db.php';
-include_once ROOT . '/functions.php';
+require_once ROOT . '/components/Db.php';
+require_once ROOT . '/functions.php';
+require_once ROOT . '/config/db_params.php';
 
 $db = Db::getConnection();
 

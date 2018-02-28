@@ -14,13 +14,10 @@ class Db
     public static function getConnection()
     {
         // Get the connection parameters from a file
-        $paramsPath = ROOT . '/config/db_params.php';
-        $params =
-            include($paramsPath);
 
         // Set the connection
-        $dsn = "mysql:host={$params['host']};dbname={$params['dbname']}";
-        $db = new PDO($dsn, $params['user'], $params['password']);
+        $dsn = "mysql:host=" . DB_HOST .";dbname=" . DB_NAME ;
+        $db = new PDO($dsn, DB_USER, DB_PASSWORD);
 
         // Specify the encoding
         $db->exec("set names utf8");
