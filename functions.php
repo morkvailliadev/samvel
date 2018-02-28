@@ -73,13 +73,6 @@ function mainAlgorithmForCurrentRow($r, $db)
             (:varh, :varf, :varl, :dateb, :int1_in, :dates_in, :datea_in, :datev_in, :datek_in, :dateg_in, :int2_in, :int3_in, :vard_in, :vark_in, :int1_out, :dates_out,
             :datea_out, :datev_out, :datek_out, :dateg_out, :int2_out, :int3_out, :vard_out, :vark_out, 1)';
 
-        
-        
-        
-        
-        
-        
-        
         $result = $db->prepare($sql);
 
         $result->execute(array(':varh' => $r['varh'], ':varf' => $r['varf'], ':varl' => $r['varl'], ':dateb' => $r['dateb'], ':int1_in' => $r['int1'],
@@ -145,13 +138,13 @@ function rightAlgorithmForCurrentRow($r, $db)
     $stmt->execute();
 
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    unset ($stmt);
 
     if (isset($rows['int3']) && $rows['int3'] != $r['int3']) {
 
-        $sql = 'INSERT INTO varhvard (vard, `int2`, `int3`) VALUES (:vard, :int2, :int3)';
-        $result = $db->prepare($sql);
+        $stmt = $db->prepare('INSERT INTO varhvard (vard, `int2`, `int3`) VALUES (:vard, :int2, :int3)');
 
-        $result->execute(array(':vard' => $r['vard'], ':int2' => $r['int2'], ':int3' => $r['int3']));
+        $stmt->execute(array(':vard' => $r['vard'], ':int2' => $r['int2'], ':int3' => $r['int3']));
 
         echo 'Algorithm 3 - row added <br>';
     } else {
