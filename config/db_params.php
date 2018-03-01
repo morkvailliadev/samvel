@@ -13,4 +13,4 @@ define("VARVAR1", "varvar1");
 define("VARHVARD", "varhvard");
 
 // partition size
-define("PARTITION_SIZE", 5000);
+define("PARTITION_SIZE", 100);

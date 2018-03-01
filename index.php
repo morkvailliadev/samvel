@@ -16,8 +16,10 @@ $db = Db::getConnection();
 _mainLog("BLOCK PROCESSING START");
 
 //last_pk_table
-//$mainResult = $db->query('SELEСT * FROM ' . ORDERED_ACT_KPP . ' WHERE pk_table > ' . $last_pk_table . ' LIMIT '. PARTITION_SIZE);
-$mainResult = $db->query('SELECT * FROM ' . ORDERED_ACT_KPP . ' LIMIT 1000');
+$last_pk_table = (int)file_get_contents(ROOT . "/components/variable.txt");
+
+$mainResult = $db->query('SELECT * FROM ' . ORDERED_ACT_KPP . ' WHERE pk_table > ' . $last_pk_table . ' LIMIT '. PARTITION_SIZE);
+//$mainResult = $db->query('SELECT * FROM ' . ORDERED_ACT_KPP . ' LIMIT 1000');
 
 
 while ($r = $mainResult->fetch(PDO::FETCH_ASSOC)) {
@@ -39,7 +41,7 @@ while ($r = $mainResult->fetch(PDO::FETCH_ASSOC)) {
 }
 
 _mainLog("BLOCK PROCESSING STOP");
-
+file_put_contents(ROOT . "/components/variable.txt",  $r['pk_table']);
 echo "script was executed successfully";
 
 /* End logic*/
