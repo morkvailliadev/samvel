@@ -257,7 +257,7 @@ function rightAlgorithmForCurrentRow($r, $db)
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     unset ($stmt);
     // (7 8 IF)
-    if (isset($rows['int3']) && $rows['int3'] != $r['int3']) {
+    if ( ! isset($rows['int3']) || $rows['int3'] != $r['int3']) {
 
         // (6_BLOCK)
         $stmt = $db->prepare('INSERT INTO ' . VARHVARD . ' (vard, `int2`, `int3`) VALUES (:vard, :int2, :int3)');
