@@ -46,7 +46,7 @@ function leftAlgorithmForCurrentRow($r, $db)
     } else {
         // (1_BLOCK)
         $sql = 'INSERT INTO ' . VARVAR1 . ' (varh, varf, varl, dateb, `int1`, dates, datea, datev, datek, dateg, `int2`, `int3`, vard, vark, varhCount)
-                VALUES (:varh, :varf, :varl, :dateb, :int1, :dates, :datea, :datev, :datek, :dateg, :int2, :int3, :vard, :vark, 0)';
+                VALUES (:varh, :varf, :varl, :dateb, :int1, :dates, :datea, :datev, :datek, :dateg, :int2, :int3, :vard, :vark, 1)';
 
         $stmt = $db->prepare($sql);
 
@@ -254,7 +254,7 @@ function rightAlgorithmForCurrentRow($r, $db)
 
     $stmt->execute();
 
-    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $rows = $stmt->fetch(PDO::FETCH_ASSOC);
     unset ($stmt);
     // (7 8 IF)
     if ( ! isset($rows['int3']) || $rows['int3'] != $r['int3']) {
