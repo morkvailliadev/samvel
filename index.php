@@ -38,10 +38,11 @@ while ($r = $mainResult->fetch(PDO::FETCH_ASSOC)) {
     _log(' ID ' . $r['pk_table'], ' ========== END ROW ==========');
     _logTime($r['pk_table'] . ' ('. ORDERED_ACT_KPP .'.pk_table) ' . ' done ' . date("H:i:s") . "\n");
 
+    $lastCurrentId = $r['pk_table'];
 }
 
 _mainLog("BLOCK PROCESSING STOP");
-file_put_contents(ROOT . "/components/variable.txt",  $r['pk_table']);
+file_put_contents(ROOT . "/components/variable.txt",  $lastCurrentId);
 echo "script was executed successfully";
 
 /* End logic*/
