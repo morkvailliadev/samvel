@@ -289,7 +289,7 @@ function rightAlgorithmForCurrentRow($r, $db)
 //    return false;
 //}
 
-function _log($var , $string = null)
+function _log($var, $string = null)
 {
         $result = $var;
         if (is_array($var) || is_object($var)) {
