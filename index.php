@@ -15,7 +15,7 @@ $db = Db::getConnection();
 
 _mainLog("BLOCK PROCESSING START");
 
-$mainResult = $db->query('SELECT * FROM ' . ORDERED_ACT_KPP . ' LIMIT 1000');
+$mainResult = $db->query('SELECT * FROM ' . ORDERED_ACT_KPP . ' LIMIT 50');
 
 
 while ($r = $mainResult->fetch(PDO::FETCH_ASSOC)) {
