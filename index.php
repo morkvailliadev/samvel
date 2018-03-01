@@ -13,7 +13,7 @@ $db = Db::getConnection();
 
 /* Main logic */
 
-_mainLog("Начало времени работы алгоритма");
+_mainLog("BLOCK PROCESSING START");
 
 $mainResult = $db->query('SELECT * FROM ' . ORDERED_ACT_KPP . ' LIMIT 1000');
 
@@ -21,7 +21,6 @@ $mainResult = $db->query('SELECT * FROM ' . ORDERED_ACT_KPP . ' LIMIT 1000');
 while ($r = $mainResult->fetch(PDO::FETCH_ASSOC)) {
 
     _log(' ID ' . $r['pk_table'], ' ========== START ROW ==========');
-    _logTime('Начальное время обработки ' . ORDERED_ACT_KPP .' ID ' . $r['pk_table'] . '---' . date("H:i:s") ."\n");
 
     //Call 1 method
     leftAlgorithmForCurrentRow($r, $db);
@@ -33,11 +32,11 @@ while ($r = $mainResult->fetch(PDO::FETCH_ASSOC)) {
     rightAlgorithmForCurrentRow($r, $db);
 
     _log(' ID ' . $r['pk_table'], ' ========== END ROW ==========');
-    _logTime('Конец времени обработки ' . ORDERED_ACT_KPP .' ID ' . $r['pk_table'] . '---' . date("H:i:s") . "\n");
+    _logTime($r['pk_table'] . ' ('. ORDERED_ACT_KPP .'.pk_table) ' . ' done ' . date("H:i:s") . "\n");
 
 }
 
-_mainLog("Конец времени работы алгоритма");
+_mainLog("BLOCK PROCESSING STOP");
 
 echo "script was executed successfully";
 
