@@ -13,13 +13,15 @@ $db = Db::getConnection();
 
 /* Main logic */
 
-$mainResult = $db->query('SELECT * FROM ' . ORDERED_ACT_KPP . ' LIMIT 50');
+_mainLog("Начало времени работы алгоритма");
 
-//For first algorithm
+$mainResult = $db->query('SELECT * FROM ' . ORDERED_ACT_KPP . ' LIMIT 1000');
+
 
 while ($r = $mainResult->fetch(PDO::FETCH_ASSOC)) {
 
-    _log(' ID ' . $r['pk_table'], ' ================================================ NEW ROW ===================================================');
+    _log(' ID ' . $r['pk_table'], ' ========== START ROW ==========');
+    _logTime('Начальное время обработки ' . ORDERED_ACT_KPP .' ID ' . $r['pk_table'] . '---' . date("H:i:s") ."\n");
 
     //Call 1 method
     leftAlgorithmForCurrentRow($r, $db);
@@ -30,7 +32,12 @@ while ($r = $mainResult->fetch(PDO::FETCH_ASSOC)) {
     //Call 3 method
     rightAlgorithmForCurrentRow($r, $db);
 
+    _log(' ID ' . $r['pk_table'], ' ========== END ROW ==========');
+    _logTime('Конец времени обработки ' . ORDERED_ACT_KPP .' ID ' . $r['pk_table'] . '---' . date("H:i:s") . "\n");
+
 }
+
+_mainLog("Конец времени работы алгоритма");
 
 echo "script was executed successfully";
 
