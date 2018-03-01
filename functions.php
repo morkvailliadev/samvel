@@ -297,14 +297,14 @@ function _log($var , $string = null)
         }
         $result .= $string ."\n";
 
-        $log_file_name = $_SERVER['DOCUMENT_ROOT'] . "/log/log.txt";
+        $log_file_name = ROOT . "/log/log.txt";
         $now = date("Y-m-d H:i:s");
         @error_log($now . $result, 3, $log_file_name);
 }
 
 function _logTime($string = null)
 {
-    $log_file_name = $_SERVER['DOCUMENT_ROOT'] . "/log/log_time.txt";
+    $log_file_name = ROOT . "/log/log_time.txt";
     @error_log($string, 3, $log_file_name);
 }
 
