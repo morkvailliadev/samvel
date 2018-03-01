@@ -260,9 +260,9 @@ function rightAlgorithmForCurrentRow($r, $db)
     if ( ! isset($rows['int3']) || $rows['int3'] != $r['int3']) {
 
         // (6_BLOCK)
-        $stmt = $db->prepare('INSERT INTO ' . VARHVARD . ' (vard, `int2`, `int3`) VALUES (:vard, :int2, :int3)');
+        $stmt = $db->prepare('INSERT INTO ' . VARHVARD . ' (vard, varh, `int2`, `int3`) VALUES (:vard, :varh, :int2, :int3)');
 
-        $stmt->execute(array(':vard' => $r['vard'], ':int2' => $r['int2'], ':int3' => $r['int3']));
+        $stmt->execute(array(':vard' => $r['vard'], ':varh' => $r['varh'], ':int2' => $r['int2'], ':int3' => $r['int3']));
 
         _log($rows, 'Algorithm 3 - 6 block done');
 
@@ -272,22 +272,6 @@ function rightAlgorithmForCurrentRow($r, $db)
         return false;
     }
 }
-
-//function _log($var, $string = null){
-//    if ($var) {
-//        $result = $var;
-//        if (is_array($var) || is_object($var)) {
-//            $result = print_r($var, 1);
-//        }
-//        $result .= $string ."\n";
-//
-//        $log_file_name = $_SERVER['DOCUMENT_ROOT'] . "/log/log.txt";
-//        $now = date("Y-m-d H:i:s");
-//        @error_log($now . $result, 3, $log_file_name);
-//        return true;
-//    }
-//    return false;
-//}
 
 function _log($var, $string = null)
 {
