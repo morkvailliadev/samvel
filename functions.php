@@ -3,7 +3,6 @@
 
 function leftAlgorithmForCurrentRow($r, $db)
 {
-    // If check p_varh in varvar1
     $stmt = $db->prepare('SELECT * FROM ' . VARVAR1 . ' WHERE varh = :varh');
 
     $stmt->bindParam(':varh', $r['varh'], PDO::PARAM_STR);
@@ -13,10 +12,10 @@ function leftAlgorithmForCurrentRow($r, $db)
     $rows = $stmt->fetch();
     unset($stmt);
 
-    // If check
+    // (1_IF)
     if ($rows) {
 
-        //Update data
+        // (2_BLOCK)
         $sql = 'UPDATE ' . VARVAR1 .' 
             SET 
                 varh = :varh, 
@@ -41,10 +40,11 @@ function leftAlgorithmForCurrentRow($r, $db)
             ':dates' => $r['dates'], ':datea' => $r['datea'], ':datev' => $r['datev'], ':datek' => $r['datek'], ':dateg' => $r['dateg'],
             ':int2' => $r['int2'], ':int3' => $r['int3'], ':vard' => $r['vard'], ':vark' => $r['vark'], ':varhCount' => ++$rows['varhCount']));
 
-        _log($rows, 'Algorithm 1 - row updated');
+        _log($rows, 'Algorithm 1 - 2 block done');
 
 
     } else {
+        // (1_BLOCK)
         $sql = 'INSERT INTO ' . VARVAR1 . ' (varh, varf, varl, dateb, `int1`, dates, datea, datev, datek, dateg, `int2`, `int3`, vard, vark, varhCount)
                 VALUES (:varh, :varf, :varl, :dateb, :int1, :dates, :datea, :datev, :datek, :dateg, :int2, :int3, :vard, :vark, 0)';
 
@@ -54,15 +54,17 @@ function leftAlgorithmForCurrentRow($r, $db)
             ':dates' => $r['dates'], ':datea' => $r['datea'], ':datev' => $r['datev'], ':datek' => $r['datek'], ':dateg' => $r['dateg'],
             ':int2' => $r['int2'], ':int3' => $r['int3'], ':vard' => $r['vard'], ':vark' => $r['vark']));
 
-        _log($rows, 'Algorithm 1 - row added');
+        _log($rows, 'Algorithm 1 - 1 block done');
     }
 }
 
 function mainAlgorithmForCurrentRow($r, $db)
 {
+    // (2_IF)
     if ($r['int1'] == 2) {
 
         // insert data in date1date2 column oshibka = 1 (DONE)
+        //(3_BLOCK)
         $sql = 'INSERT INTO ' . DATE1DATE2 . ' 
             (varh, varf, varl, dateb, int1_in, dates_in, datea_in, datev_in, datek_in, dateg_in, int2_in, int3_in, vard_in, vark_in, int1_out, dates_out, 
             datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka)
@@ -78,6 +80,9 @@ function mainAlgorithmForCurrentRow($r, $db)
             ':dates_out' => null, ':datea_out' => null, ':datev_out' => null, ':datek_out' => null, ':dateg_out' => null,
             ':int2_out' => null, ':int3_out' => null, ':vard_out' => null, ':vark_out' => null));
 
+        _log(null, 'Algorithm 2 - 3 block done');
+
+    // (3_IF)
     } elseif ($r['int1'] == 1) {
 
         //Check this block (DONE)
@@ -94,8 +99,10 @@ function mainAlgorithmForCurrentRow($r, $db)
         unset($stmt);
 
         // В таблице date1date2 есть строка в которой varh=p_varh и int1_out is null -> oshibka = 1 (DONE)
+        // (4_IF)
         if ($rows) {
 
+            // (3_BLOCK)
             $sql = 'INSERT INTO ' . DATE1DATE2 . ' 
             (varh, varf, varl, dateb, int1_in, dates_in, datea_in, datev_in, datek_in, dateg_in, int2_in, int3_in, vard_in, vark_in, int1_out, dates_out, 
             datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka)
@@ -110,9 +117,12 @@ function mainAlgorithmForCurrentRow($r, $db)
                 ':int2_in' => $r['int2'], ':int3_in' => $r['int3'], ':vard_in' => $r['vard'], ':vark_in' => $r['vark'], ':int1_out' => null,
                 ':dates_out' => null, ':datea_out' => null, ':datev_out' => null, ':datek_out' => null, ':dateg_out' => null,
                 ':int2_out' => null, ':int3_out' => null, ':vard_out' => null, ':vark_out' => null));
+
+            _log($rows, 'Algorithm 2 - 3 block done');
         } else {
 
             //иначе просто копируем в data1date2 (in пишу, out - null) (DONE)
+            // (4_BLOCK)
             $sql = 'INSERT INTO ' . DATE1DATE2 . ' 
             (varh, varf, varl, dateb, int1_in, dates_in, datea_in, datev_in, datek_in, dateg_in, int2_in, int3_in, vard_in, vark_in, int1_out, dates_out, 
             datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka)
@@ -127,6 +137,8 @@ function mainAlgorithmForCurrentRow($r, $db)
                 ':int2_in' => $r['int2'], ':int3_in' => $r['int3'], ':vard_in' => $r['vard'], ':vark_in' => $r['vark'], ':int1_out' => null,
                 ':dates_out' => null, ':datea_out' => null, ':datev_out' => null, ':datek_out' => null, ':dateg_out' => null,
                 ':int2_out' => null, ':int3_out' => null, ':vard_out' => null, ':vark_out' => null));
+
+            _log($rows, 'Algorithm 2 - 4 block done');
         }
     } else {  // int1 == 0
 
@@ -142,10 +154,13 @@ function mainAlgorithmForCurrentRow($r, $db)
         $rows = $stmt->fetch();
         unset($stmt);
 
+        // (5_IF)
         if($rows){
             //Check this block (DONE)
+            // (6_IF)
             if ($rows['int1_in'] != NULL) {
 
+                // (5_BLOCK)
                 //update строку с varh в таблице date1date2 и  ordere_act_kpp
                 $sql = 'UPDATE `' . DATE1DATE2 . '`
             SET 
@@ -183,9 +198,12 @@ function mainAlgorithmForCurrentRow($r, $db)
                     ':dates_out' => $r['dates'], ':datea_out' => $r['datea'], ':datev_out' => $r['datev'], ':datek_out' => $r['datek'], ':dateg_out' => $r['dateg'],
                     ':int2_out' => $r['int2'], ':int3_out' => $r['int3'], ':vard_out' => $r['vard'], ':vark_out' =>  $r['vark']));
 
+                _log($rows, 'Algorithm 2 - 5 block done');
+
             } else {
 
                 // insert date1date2, oshibka = 1 out
+                // (3_BLOCK)
                 $sql = 'INSERT INTO ' . DATE1DATE2 . ' 
             (varh, varf, varl, dateb, int1_in, dates_in, datea_in, datev_in, datek_in, dateg_in, int2_in, int3_in, vard_in, vark_in, int1_out, dates_out, 
             datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka)
@@ -200,10 +218,13 @@ function mainAlgorithmForCurrentRow($r, $db)
                     ':int2_in' => null, ':int3_in' => null, ':vard_in' => null, ':vark_in' => null, ':int1_out' => $r['int1'],
                     ':dates_out' => $r['dates'], ':datea_out' => $r['datea'], ':datev_out' => $r['datev'], ':datek_out' => $r['datek'], ':dateg_out' => $r['dateg'],
                     ':int2_out' => $r['int2'], ':int3_out' => $r['int3'], ':vard_out' => $r['vard'], ':vark_out' =>  $r['vark']));
+
+                _log($rows, 'Algorithm 2 - 3 block done');
             }
 
         } else {
             // insert date1date2, oshibka = 0 (DONE)
+            // (4_BLOCK)
             $sql = 'INSERT INTO ' . DATE1DATE2 . ' 
             (varh, varf, varl, dateb, int1_in, dates_in, datea_in, datev_in, datek_in, dateg_in, int2_in, int3_in, vard_in, vark_in, int1_out, dates_out, 
             datea_out, datev_out, datek_out, dateg_out, int2_out, int3_out, vard_out, vark_out, oshibka)
@@ -218,6 +239,8 @@ function mainAlgorithmForCurrentRow($r, $db)
                 ':int2_in' => null, ':int3_in' => null, ':vard_in' => null, ':vark_in' => null, ':int1_out' => $r['int1'],
                 ':dates_out' => $r['dates'], ':datea_out' => $r['datea'], ':datev_out' => $r['datev'], ':datek_out' => $r['datek'], ':dateg_out' => $r['dateg'],
                 ':int2_out' => $r['int2'], ':int3_out' => $r['int3'], ':vard_out' => $r['vard'], ':vark_out' => $r['vark']));
+
+            _log($rows, 'Algorithm 2 - 4 block done');
         }
     }
 }
@@ -233,12 +256,15 @@ function rightAlgorithmForCurrentRow($r, $db)
 
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     unset ($stmt);
-
+    // (7 8 IF)
     if (isset($rows['int3']) && $rows['int3'] != $r['int3']) {
 
+        // (6_BLOCK)
         $stmt = $db->prepare('INSERT INTO ' . VARHVARD . ' (vard, `int2`, `int3`) VALUES (:vard, :int2, :int3)');
 
         $stmt->execute(array(':vard' => $r['vard'], ':int2' => $r['int2'], ':int3' => $r['int3']));
+
+        _log($rows, 'Algorithm 3 - 6 block done');
 
         return true;
 
